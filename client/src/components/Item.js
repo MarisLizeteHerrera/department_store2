@@ -4,7 +4,7 @@ import axios from "axios";
 import ItemForm from './ItemForm';
 import { Button, Container, Header, Segment,} from 'semantic-ui-react';
 
-
+//NOT WORKING
 // class Item extends React.Component {
 //   state = { item: {} };
 
@@ -48,6 +48,7 @@ import { Button, Container, Header, Segment,} from 'semantic-ui-react';
 //   }
 // }
 
+//OTHER ATTEMPT
 class Item extends React.Component {
   state = { item: [], };
 
