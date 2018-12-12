@@ -3,13 +3,17 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 
 class Department extends React.Component {
-  state = { department: {}, };
+  state = { department: {}, items: [] };
 
   componentDidMount() {
     const { id, } = this.props.match.params;
     axios.get(`/api/departments/${id}`)
       .then( res => {
         this.setState({ department: res.data, });
+      })
+    axios.get(`/api/departments/${id}/items`)
+      .then( res => {
+        this.setState({ items: res.data, });
       })
   }
 
@@ -19,6 +23,16 @@ class Department extends React.Component {
       .then( res => {
         this.props.history.push("/departments");
       })
+  }
+
+  //items
+
+  renderItems = () => {
+    return this.state.items.map( i => (
+      <Link to={`/items/${i.id}`}>
+        <li>{ i.name } - ${ i.price }</li>
+      </Link>
+    ));
   }
 
   render() {
@@ -32,6 +46,9 @@ class Department extends React.Component {
           <button>Edit</button>
         </Link>
         <button onClick={this.handleDelete}>Delete</button>
+        <ul>
+          { this.renderItems() }
+        </ul>
       </div>
     )
   }
