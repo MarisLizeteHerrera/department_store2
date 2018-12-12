@@ -8,7 +8,7 @@ class ItemForm extends React.Component {
 
   componentDidMount() {
 
-    const { id ,} = this.props.match.params;
+    const { id } = this.props.match.params;
     if (id)
       axios.get(`/api/items/${id}`)
         .then( res => {
