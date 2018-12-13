@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, } from "react-router-dom";
 import axios from "axios";
+import { Card, Button,  } from 'semantic-ui-react'
 
 class Departments extends React.Component {
   state = { departments: [], };
@@ -17,10 +18,20 @@ class Departments extends React.Component {
 
   renderDepartments = () => {
     return this.state.departments.map( d => (
-      <Link to={`/departments/${d.id}`}>
-        <li>{ d.name }</li>
-      </Link>
-    ));
+      <Card>
+        <Card.Content>
+          <Card.Header>{d.name}</Card.Header>
+          <Card.Description>{d.description}</Card.Description>
+        </Card.Content>
+        <Card.Content textAlign="center">
+          <Link to={`/departments/${d.id}`}>
+            <Button color="blue">
+              View
+            </Button>
+          </Link>
+        </Card.Content>
+      </Card>
+    ))
   }
 
   render() {

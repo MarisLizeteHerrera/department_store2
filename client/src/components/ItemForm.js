@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import { Form, } from "semantic-ui-react"
 
 
 class ItemForm extends React.Component {
@@ -24,19 +25,9 @@ class ItemForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const item = { ...this.state };
-    const { id, department_id } = this.props.match.params;
-    if (id) {
-      axios.put(`/api/departments/${department_id}/items/${id}`, item )
-        .then( res => {
-          this.props.history.push(`/items/${id}`)
-        })
-    } else {
-      axios.post(`/api/departments/${id}/items`, item)
-        .then( res => {
-          this.props.history.push(`/departments/${id}`)
-        })
-    }
+    const { id, } = this.props.match.params;
+    axios.post(`/api/departments/${id}/items`, { ...this.state })
+      .then( res => this.props.history.push(`/departments/${id}`))
   }
 
   render() {

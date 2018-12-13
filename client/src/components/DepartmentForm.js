@@ -1,21 +1,11 @@
 import React from 'react';
 import axios from "axios";
 import { Link, } from "react-router-dom";
-
+import { Button, Form } from 'semantic-ui-react'
+import styled from "styled-components";
 
 class DepartmentForm extends React.Component {
   state = { name: "", };
-
-  componentDidMount() {
-
-    const { id } = this.props.match.params;
-    if (id)
-      axios.get(`/api/departments/${id}`)
-        .then( res => {
-          const { name } = res.data;
-          this.setState({ name });
-        })
-  }
 
   handleChange = (e) => {
     const { target: { name, value, } } = e;
@@ -42,20 +32,29 @@ class DepartmentForm extends React.Component {
   render() {
     const { name, } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <input
           name="name"
-          placeholder="Name"
+          placeholder= "name"
           value={name}
           onChange={this.handleChange}
           required
         />
-        <button>Submit</button>
-      </form>
+        <ButnStyle>
+          <Button color='green'>Submit</Button>
+        </ButnStyle>
+      </Form>
     )
   }
 }
 
+const ButnStyle = styled.div`
+  margin-bottom: 2%;
+  margin-top: 2%;
+
+
+
+`;
 
 
 export default DepartmentForm
