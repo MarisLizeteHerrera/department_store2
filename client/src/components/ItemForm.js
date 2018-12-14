@@ -44,9 +44,6 @@ class ItemForm extends React.Component {
           onChange={this.handleChange}
           required
         />
-      </FormStyle>
-
-      <FormStyle>
         <input
           name="price"
           placeholder="Price"
@@ -55,7 +52,7 @@ class ItemForm extends React.Component {
           required
         />
         <ButnStyle>
-        <Button color='green'>Submit</Button>
+         <Button color='green'>Submit</Button>
         </ButnStyle>
       </FormStyle>
     )
