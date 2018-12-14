@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, } from "react-router-dom";
 import axios from "axios";
 import { Card, Button,  } from 'semantic-ui-react'
+import styled from "styled-components";
 
 class Departments extends React.Component {
   state = { departments: [], };
@@ -20,15 +21,16 @@ class Departments extends React.Component {
     return this.state.departments.map( d => (
       <Card>
         <Card.Content>
-          <Card.Header>{d.name}</Card.Header>
-          <Card.Description>{d.description}</Card.Description>
+          <Card.Header textAlign='center'>{d.name}</Card.Header>
         </Card.Content>
-        <Card.Content textAlign="center">
-          <Link to={`/departments/${d.id}`}>
-            <Button color="blue">
-              View
-            </Button>
-          </Link>
+        <Card.Content extra textAlign='center'>
+          <ButnStyle>
+            <Link to={`/departments/${d.id}`}>
+              <Button color="blue">
+                View
+              </Button>
+            </Link>
+          </ButnStyle>
         </Card.Content>
       </Card>
     ))
@@ -37,17 +39,26 @@ class Departments extends React.Component {
   render() {
     return (
       <div>
-        <br />
-        <Link to="/departments/new">
-          <button>New Department</button>
-        </Link>
-        <ul>
+        <ButnStyle>
+          <Link to="/departments/new">
+            <Button color='green'>+ New Department</Button>
+          </Link>
+        </ButnStyle>
+        <Card.Group itemsPerRow={5}>
           { this.renderDepartments() }
-        </ul>
+        </Card.Group>
       </div>
     )
   }
 }
 
+
+const ButnStyle = styled.div`
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+
+
+`;
 
 export default Departments

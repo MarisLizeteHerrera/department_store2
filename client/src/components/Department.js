@@ -31,18 +31,19 @@ class Department extends React.Component {
     ));
   }
 
-  removeItem = (id) => {
+  removeItem = (itemId) => {
     const remove = window.confirm("Are you sure you want to delete this item?");
-    const dId = this.props.match.params.id;
+    const { items } = this.state
+    const department_id = this.props.match.params.id;
     if (remove)
-      axios.delete(`/api/departments/${dId}/items/${id}`)
-      .then( res => {
-        const items = this.state.items.filter( i => {
-          if (i.id !== id)
-          return i;
+      axios.delete(`/api/departments/${department_id}/items/${itemId}`)
+        .then( res => {
+          const items = this.state.items.filter( i => {
+            if (i.id !== itemId)
+            return i;
+          })
+          this.setState({ items, });
         })
-        this.setState({ items, });
-      })
   }
 
   render() {
@@ -61,12 +62,14 @@ class Department extends React.Component {
 
           </ButnStyle>
 
-        <Card.Group itemsPerRow={5}>
+        <Card.Group itemsPerRow={4}>
           { this.renderItems() }
         </Card.Group>
 
         <ButnStyle>
-          <Button color='green'>+</Button>
+          <Link to={`/departments/${id}/items/new`}>
+            <Button color='green'>+</Button>
+          </Link>
         </ButnStyle>
       </div>
     )

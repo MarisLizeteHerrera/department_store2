@@ -7,6 +7,13 @@ import styled from "styled-components";
 class DepartmentForm extends React.Component {
   state = { name: "", };
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    axios.get(`/api/departments/${id}`)
+    .then( res=> this.setState({name: res.data.name}))
+  }
+
+
   handleChange = (e) => {
     const { target: { name, value, } } = e;
     this.setState({ [name]: value, });

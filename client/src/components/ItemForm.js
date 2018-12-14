@@ -1,17 +1,16 @@
 import React from 'react';
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Form, } from "semantic-ui-react"
-
+import { Form, Button, } from "semantic-ui-react"
+import styled from "styled-components";
 
 class ItemForm extends React.Component {
   state = { name: "", price: "" };
 
   componentDidMount() {
-
-    const { id } = this.props.match.params;
+    const { department_id, id } = this.props.match.params;
     if (id)
-      axios.get(`/api/items/${id}`)
+      axios.get(`/api/departments/${department_id}/items/${id}`)
         .then( res => {
           const { name, price } = res.data;
           this.setState({ name, price });
@@ -25,15 +24,19 @@ class ItemForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { id, } = this.props.match.params;
-    axios.post(`/api/departments/${id}/items`, { ...this.state })
-      .then( res => this.props.history.push(`/departments/${id}`))
+    const { department_id, id } = this.props.match.params;
+    if (id)
+      axios.put(`/api/departments/${department_id}/items/${id}`, { ...this.state })
+        .then( res => this.props.history.push(`/departments/${department_id}`))
+    else
+      axios.post(`/api/departments/${department_id}/items`, { ...this.state })
+        .then( res => this.props.history.push(`/departments/${department_id}`))
   }
 
   render() {
     const { name, price} = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <FormStyle onSubmit={this.handleSubmit}>
         <input
           name="name"
           placeholder="Name"
@@ -41,6 +44,9 @@ class ItemForm extends React.Component {
           onChange={this.handleChange}
           required
         />
+      </FormStyle>
+
+      <FormStyle>
         <input
           name="price"
           placeholder="Price"
@@ -48,12 +54,22 @@ class ItemForm extends React.Component {
           onChange={this.handleChange}
           required
         />
-        <button>Submit</button>
-      </form>
+        <ButnStyle>
+        <Button color='green'>Submit</Button>
+        </ButnStyle>
+      </FormStyle>
     )
   }
 }
 
+
+const FormStyle = styled(Form)`
+  padding: 1%;
+`;
+const ButnStyle = styled.div`
+margin-bottom: 1%;
+margin-top: 1%;
+`;
 
 
 export default ItemForm

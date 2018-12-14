@@ -3,7 +3,7 @@ class Api::ItemsController < ApplicationController
   before_action :set_department
 
   def index
-    render json: @department.items.all
+    render json: @department.items
   end
 
   def show
@@ -11,7 +11,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def create
-    item = @departments.items.new(item_params)
+    item = @department.items.new(item_params)
 
     if item.save
       render json: item
@@ -40,7 +40,7 @@ class Api::ItemsController < ApplicationController
     end
 
     def set_item
-      @item = @departments.items.find(params[:id])
+      @item = Item.find(params[:id])
     end
 
     def item_params
