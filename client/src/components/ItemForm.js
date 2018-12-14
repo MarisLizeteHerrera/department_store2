@@ -37,20 +37,27 @@ class ItemForm extends React.Component {
     const { name, price} = this.state;
     return (
       <FormStyle onSubmit={this.handleSubmit}>
-        <input
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={this.handleChange}
-          required
-        />
-        <input
-          name="price"
-          placeholder="Price"
-          value={price}
-          onChange={this.handleChange}
-          required
-        />
+        <Form.Field>
+          <label>Item Name</label>
+          <input
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={this.handleChange}
+            required
+          />
+        </Form.Field>
+
+        <Form.Field>
+          <label>Price</label>
+          <input
+            name="price"
+            placeholder="Price"
+            value={price}
+            onChange={this.handleChange}
+            required
+          />
+        </Form.Field>
         <ButnStyle>
          <Button color='green'>Submit</Button>
         </ButnStyle>

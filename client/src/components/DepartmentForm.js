@@ -40,13 +40,17 @@ class DepartmentForm extends React.Component {
     const { name, } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <input
-          name="name"
-          placeholder= "name"
-          value={name}
-          onChange={this.handleChange}
-          required
-        />
+        <Form.Field>
+          <label>Department Name</label>
+          <input
+            name="name"
+            placeholder= "name"
+            value={name}
+            onChange={this.handleChange}
+            required
+          />
+        </Form.Field>
+        
         <ButnStyle>
           <Button color='green'>Submit</Button>
         </ButnStyle>
