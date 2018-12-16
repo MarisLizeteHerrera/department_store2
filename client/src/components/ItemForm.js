@@ -59,7 +59,7 @@ class ItemForm extends React.Component {
           />
         </Form.Field>
         <ButnStyle>
-         <Button color='green'>Submit</Button>
+         <Button color='black'>Submit</Button>
         </ButnStyle>
       </FormStyle>
     )

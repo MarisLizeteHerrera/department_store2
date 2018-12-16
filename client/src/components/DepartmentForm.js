@@ -50,9 +50,9 @@ class DepartmentForm extends React.Component {
             required
           />
         </Form.Field>
-        
+
         <ButnStyle>
-          <Button color='green'>Submit</Button>
+          <Button color='black'>Submit</Button>
         </ButnStyle>
       </Form>
     )
@@ -62,9 +62,6 @@ class DepartmentForm extends React.Component {
 const ButnStyle = styled.div`
   margin-bottom: 2%;
   margin-top: 2%;
-
-
-
 `;
 
 

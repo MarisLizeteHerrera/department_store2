@@ -26,6 +26,7 @@ class Department extends React.Component {
 
 
   renderItems = () => {
+    debugger
     return this.state.items.map( i => (
         <ItemCard key={i.id} { ...i } remove={this.removeItem} />
     ));
@@ -68,7 +69,7 @@ class Department extends React.Component {
 
         <ButnStyle>
           <Link to={`/departments/${id}/items/new`}>
-            <Button color='green'>+</Button>
+            <Button color='black'>+</Button>
           </Link>
         </ButnStyle>
       </div>
