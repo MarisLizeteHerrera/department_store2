@@ -8,7 +8,7 @@ import Departments from './components/Departments';
 import DepartmentForm from './components/DepartmentForm';
 import Department from './components/Department';
 import ItemForm from './components/ItemForm';
-import Item from './styles/ItemCard';
+import Item from './components/Item';
 import NoMatch from './components/NoMatch';
 
 

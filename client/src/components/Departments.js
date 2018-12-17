@@ -14,7 +14,7 @@ class Departments extends React.Component {
       })
       .catch( err => {
         console.log(err.response);
-      })
+    })
   }
 
   renderDepartments = () => {
